@@ -23,14 +23,14 @@ jobs:
     steps: 
     
     - name: SETUP GCLOUD CLI
-      uses: actions/checkout@v2 
+    - uses: actions/checkout@v2 
       
-    - run: |
+      run: |
         sudo snap install google-cloud-cli --classic 
         gcloud auth activate-service-account $sa_name --key-file=gcp_cred 
     
     - name: Terraform init 
-      uses: hashicorp/terraform-github-actions/init@v0.4.0
+    - uses: hashicorp/terraform-github-actions/init@v0.4.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         TF_ACTION_WORKING_DIR: 'terraform' 
