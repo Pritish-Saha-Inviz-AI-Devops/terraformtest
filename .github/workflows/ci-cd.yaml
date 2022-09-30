@@ -23,7 +23,7 @@ jobs:
     steps: 
     
     - name: SETUP GCLOUD CLI
-    - uses: actions/checkout@v2 
+      uses: actions/checkout@v2 
       run: |
         sudo snap install google-cloud-cli --classic 
         gcloud auth activate-service-account $sa_name --key-file=gcp_cred 
