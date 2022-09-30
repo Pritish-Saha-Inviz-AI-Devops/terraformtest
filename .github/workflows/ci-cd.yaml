@@ -1,0 +1,44 @@
+name: Terraform automation script
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
+
+jobs: 
+  infra_setup:
+    name: Deploy-INFRA
+    runs-on: ubuntu-latest
+    env:
+      gcp_cred : ${{ secrets.GCP_SA_CRED }}
+      sa_name : ${{ secrets.SA_NAME }}
+
+    steps: 
+    
+    - name: SETUP GCLOUD CLI
+    - uses: actions/checkout@v2 
+      run: |
+        sudo snap install google-cloud-cli --classic 
+        gcloud auth activate-service-account $sa_name --key-file=gcp_cred 
+    
+    - name: Terraform init 
+      uses: hashicorp/terraform-github-actions/initv0.4.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TF_ACTION_WORKING_DIR: 'terraform' 
+
+    - name: Terraform Validate 
+      uses: hashicorp/terraform-github-actions/validate@v0.3.7 
+    
+    - name: Terraform apply
+      uses: hashicorp/terraform-github-actions/apply@v0.4.0
+  
+        
+  
