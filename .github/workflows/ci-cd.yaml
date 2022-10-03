@@ -17,7 +17,7 @@ jobs:
     runs-on : ubuntu-latest
     env:
       gcp_credential: ${{secrets.GCP_CRED}}
-      SERVICE_ACCOUNT: 'naveen-mid-access@inviz-gcp.iam.gserviceaccount.com'
+      SERVICE_ACCOUNT: 'naveen-master-sa@inviz-gcp.iam.gserviceaccount.com'
     steps :
       - uses: actions/checkout@v2
       - name: test
