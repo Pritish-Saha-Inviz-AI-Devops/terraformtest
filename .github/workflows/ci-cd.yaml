@@ -1,4 +1,5 @@
-name: Terraform automation script
+name: infra tf  Automation
+
 on:
   workflow_dispatch:
     inputs:
@@ -11,35 +12,19 @@ on:
           - info
           - warning
           - debug
-
-jobs: 
-  infra_setup:
-    name: Deploy-INFRA
-    runs-on: ubuntu-latest
+jobs:
+  automate infra deployment :
+    runs-on : ubuntu-latest
     env:
-      gcp_cred : ${{ secrets.GCP_SA_CRED }}
-      sa_name : ${{ secrets.SA_NAME }}
-
-    steps: 
-    
-    - name: SETUP GCLOUD CLI
-    - uses: actions/checkout@v2 
-      
-      run: |
-        sudo snap install google-cloud-cli --classic 
-        gcloud auth activate-service-account $sa_name --key-file=gcp_cred 
-    
-    - name: Terraform init 
-    - uses: hashicorp/terraform-github-actions/init@v0.4.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        TF_ACTION_WORKING_DIR: 'terraform' 
-
-    - name: Terraform Validate 
-    - uses: hashicorp/terraform-github-actions/validate@v0.3.7 
-    
-    - name: Terraform apply
-      uses: hashicorp/terraform-github-actions/apply@v0.4.0
-  
-        
-  
+      gcp_credential: ${{secrets.GCP_CRED}}
+      SERVICE_ACCOUNT: 'naveen-mid-access@inviz-gcp.iam.gserviceaccount.com'
+    steps :
+      - uses: actions/checkout@v2
+      - name: test
+        run: |
+          sudo snap install google-cloud-cli --classic
+          gcloud auth activate-service-account $SERVICE_ACCOUNT --key-file=$gcp_credential
+          sudo snap install terraform --classic 
+          terraform init 
+          terraform plan -out=planfile
+          terraform apply planfile
