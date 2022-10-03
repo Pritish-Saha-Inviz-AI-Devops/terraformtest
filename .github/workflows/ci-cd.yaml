@@ -22,9 +22,11 @@ jobs:
       - uses: actions/checkout@v2
       - name: test
         run: |
+          echo $gcp_credential > temp.json
           sudo snap install google-cloud-cli --classic
-          gcloud auth activate-service-account $SERVICE_ACCOUNT --key-file=$gcp_credential
+          gcloud auth activate-service-account $SERVICE_ACCOUNT --key-file=temp.json
           sudo snap install terraform --classic 
           terraform init 
           terraform plan -out=planfile
           terraform apply planfile
+          rm temp.json
