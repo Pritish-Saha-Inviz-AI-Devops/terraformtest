@@ -28,7 +28,7 @@ jobs:
           sudo snap install terraform --classic 
           gcloud config set account $SERVICE_ACCOUNT 
           terraform init 
-          terraform plan -out=planfile
-          terraform apply planfile
-          terraform destroy
+          terraform plan #-out=planfile
+          terraform apply #planfile
+          #terraform destroy
           rm temp.json
