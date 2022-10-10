@@ -1,5 +1,5 @@
 provider "google"{
-    project ="inviz-gcp"
+    project ="search-tf-test"
     region="asia-south1"
     credentials="temp.json"
 }
