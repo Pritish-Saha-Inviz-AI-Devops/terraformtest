@@ -26,7 +26,8 @@ jobs:
           sudo snap install google-cloud-cli --classic
           gcloud auth activate-service-account $SERVICE_ACCOUNT --key-file=temp.json
           sudo snap install terraform --classic 
-          gcloud config set account $SERVICE_ACCOUNT 
+          #gcloud config set account $SERVICE_ACCOUNT
+          export GOOGLE_APPLICATION_CREDENTIALS=temp.json
           terraform init 
           terraform plan #-out=planfile
           terraform apply #planfile
