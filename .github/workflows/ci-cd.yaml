@@ -30,6 +30,6 @@ jobs:
           export GOOGLE_APPLICATION_CREDENTIALS=temp.json
           terraform init 
           terraform plan -out=planfile
-          #terraform apply #planfile
+          terraform apply planfile
           #terraform destroy
           rm temp.json
