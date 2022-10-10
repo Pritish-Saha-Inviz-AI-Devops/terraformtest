@@ -13,7 +13,7 @@ terraform {
   required_version = ">= 0.13, < 2.0"
   backend "gcs" {
     bucket  = "search-tf-test"
-    prefix  = "terraform/pstest"
+    prefix  = "tf-test"
   }
 }  
 
