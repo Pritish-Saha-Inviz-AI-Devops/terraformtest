@@ -22,7 +22,7 @@ terraform {
 
 resource "google_pubsub_topic" "fromactions" {
     name ="fromactions"
-    project = "inviz-gcp"
+    project = "search-tf-test"
     
   
 }
