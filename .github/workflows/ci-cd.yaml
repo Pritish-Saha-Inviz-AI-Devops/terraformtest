@@ -33,6 +33,6 @@ jobs:
           terraform init 
           terraform plan #-out=$d
           #terraform apply $d
-          gsutil cp $d  gs://search-tf-test/tf-test
+          #gsutil cp $d  gs://search-tf-test/tf-test
           terraform destroy --auto-approve
           rm temp.json
