@@ -22,6 +22,19 @@ jobs:
       #- uses: actions/checkout@v2
       - name: test
         run: |
+          echo hii
+          #terraform init 
+          #terraform plan -out=$d
+          #terraform apply $d
+          #gsutil cp $d  gs://search-tf-test/tf-test
+          #terraform destroy --auto-approve
+          # rm temp.json
+     #
+      - if: contains('hII','II')
+        name: testing  
+        uses: actions/checkout@v2 
+      - name: testing contd 
+        run: |
           export d=$(date)
           export d=${d// /}
           echo $gcp_credential > temp.json
@@ -30,17 +43,6 @@ jobs:
           sudo snap install terraform --classic 
           gcloud config set account $SERVICE_ACCOUNT
           export GOOGLE_APPLICATION_CREDENTIALS=temp.json
-          #terraform init 
-          #terraform plan -out=$d
-          #terraform apply $d
-          #gsutil cp $d  gs://search-tf-test/tf-test
-          #terraform destroy --auto-approve
-          # rm temp.json
-     #- name: testing  
-      - if: contains('hII','II')
-        uses: actions/checkout@v2 
-      - name: testing contd 
-        run: |
           terraform init 
           terraform plan -out=$d
           gsutil cp $d  gs://search-tf-test/tf-test
