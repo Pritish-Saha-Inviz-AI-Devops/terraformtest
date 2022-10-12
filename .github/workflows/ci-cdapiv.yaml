@@ -36,8 +36,8 @@ jobs:
           #gsutil cp $d  gs://search-tf-test/tf-test
           #terraform destroy --auto-approve
           # rm temp.json
-      - name: testing  
-        if: contains("hII","II")
+     #- name: testing  
+      - if: contains("hII","II")
         uses: actions/checkout@v2 
       - name: testing contd 
         run: |
