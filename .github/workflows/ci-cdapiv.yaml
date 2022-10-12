@@ -30,7 +30,7 @@ jobs:
           #terraform destroy --auto-approve
           # rm temp.json
      #
-      - if: contains('hII','II')
+      - if: contains('hII','Z')
         name: testing  
         uses: actions/checkout@v2 
       - name: testing contd 
