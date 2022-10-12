@@ -34,19 +34,8 @@ jobs:
         name: testing  
         uses: actions/checkout@v2 
       - name: testing contd 
-        run: |
-          export d=$(date)
-          export d=${d// /}
-          echo $gcp_credential > temp.json
-          sudo snap install google-cloud-cli --classic
-          gcloud auth activate-service-account $SERVICE_ACCOUNT --key-file=temp.json
-          sudo snap install terraform --classic 
-          gcloud config set account $SERVICE_ACCOUNT
-          export GOOGLE_APPLICATION_CREDENTIALS=temp.json
-          terraform init 
-          terraform plan -out=$d
-          #gsutil cp $d  gs://search-tf-test/tf-test
-          rm temp.json
-
+        run:  |
+          chmod +x ./script.sh
+          bash ./script.sh
 
         
