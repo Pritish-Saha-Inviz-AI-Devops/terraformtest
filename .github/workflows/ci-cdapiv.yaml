@@ -45,7 +45,7 @@ jobs:
           export GOOGLE_APPLICATION_CREDENTIALS=temp.json
           terraform init 
           terraform plan -out=$d
-          gsutil cp $d  gs://search-tf-test/tf-test
+          #gsutil cp $d  gs://search-tf-test/tf-test
           rm temp.json
 
 
